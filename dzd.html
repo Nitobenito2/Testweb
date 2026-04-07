@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dzimšanas diena</title>
+</head>
+<body>
+
+<h1>Gaidot dzimšanas dienu..</h1>
+<hr>
+
+<form>
+    <p>Ievadi pilnu datumu, kad Tev būs tuvākā dzimšanas diena</p>
+
+    gads: <input type="text" name="gads"><br>
+    mēnesis: <input type="text" name="menesis"><br>
+    diena: <input type="text" name="datums"><br><br>
+
+    <input type="button"
+    value="Aprēķināt dienu skaitu līdz dzimšanas dienai"
+    onclick="dienas();"><br><br>
+
+    Līdz svētkiem atlikušas 
+    <input type="text" name="dienas">
+    dienas : ))
+</form>
+
+<script>
+function dienas() {
+    var menesis = parseInt(document.getElementsByName("menesis")[0].value);
+    var diena = parseInt(document.getElementsByName("datums")[0].value);
+
+    // pārbaude
+    if (isNaN(menesis) || isNaN(diena)) {
+        alert("Ievadi mēnesi un dienu ar skaitļiem!");
+        return;
+    }
+
+    var sodien = new Date();
+
+    var dzimsanas = new Date(sodien.getFullYear(), menesis - 1, diena);
+
+    if (dzimsanas < sodien) {
+        dzimsanas.setFullYear(sodien.getFullYear() + 1);
+    }
+
+    var starpiba = dzimsanas.getTime() - sodien.getTime();
+    var dienuSkaits = Math.ceil(starpiba / (1000 * 60 * 60 * 24));
+
+    document.getElementsByName("dienas")[0].value = dienuSkaits;
+}
+</script>
+
+</body>
+</html>

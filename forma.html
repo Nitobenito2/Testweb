@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Formas</title>
+    <link href="css/stils.css" rel="stylesheet" type="text/css">
+    <script>
+        // Funkcija aprēķiniem
+        function reizinat() {
+            let a = parseFloat(document.forms["calc"].sk1.value) || 0;
+            let b = parseFloat(document.forms["calc"].sk2.value) || 0;
+            document.forms["calc"].rez.value = a * b;
+        }
+
+        function saskaitit() {
+            let a = parseFloat(document.forms["calc"].sk1.value) || 0;
+            let b = parseFloat(document.forms["calc"].sk2.value) || 0;
+            document.forms["calc"].rez.value = a + b;
+        }
+
+        function atnemt() {
+            let a = parseFloat(document.forms["calc"].sk1.value) || 0;
+            let b = parseFloat(document.forms["calc"].sk2.value) || 0;
+            document.forms["calc"].rez.value = a - b;
+        }
+
+        function dalit() {
+            let a = parseFloat(document.forms["calc"].sk1.value) || 0;
+            let b = parseFloat(document.forms["calc"].sk2.value) || 0;
+            document.forms["calc"].rez.value = b !== 0 ? a / b : "Dalīt ar 0 nevar!";
+        }
+
+        function resetRez() {
+            document.forms["calc"].sk1.value = "";
+            document.forms["calc"].sk2.value = "";
+            document.forms["calc"].rez.value = "";
+        }
+    </script>
+</head>
+<body>
+    <h1>Formas un ievadlauku piemērs</h1>
+
+    <!-- Datuma forma -->
+    <form>
+        <p>Šodienas datums: <input name="datums"></p>
+        <p>
+            Ja gribi uzzināt šodienas datumu, spied pogu DATUMS
+            <input type="button" value="DATUMS" onclick="datums.value=new Date();">
+        </p>
+        <p>
+            Ja gribi izdzēst datuma lodziņa saturu, spied pogu RESET
+            <input type="reset" value="RESET">
+        </p>
+    </form>
+
+    <!-- Aprēķinu forma -->
+    <form name="calc">
+        <div>1. skaitlis: <input type="text" name="sk1"></div>
+        <div>2. skaitlis: <input type="text" name="sk2"></div>
+        <hr>
+        <div>Rezultāts: <input type="text" name="rez" readonly></div>
+        <br>
+        <div>
+            <input type="button" value="Saskaitīt" onclick="saskaitit()">
+            <input type="button" value="Atņemt" onclick="atnemt()">
+            <input type="button" value="Reizināt" onclick="reizinat()">
+            <input type="button" value="Dalīt" onclick="dalit()">
+            <input type="button" value="Reset" onclick="resetRez()">
+        </div>
+    </form>
+</body>
+<a href="index.html">Atpakaļ uz pirmo lapu </a>
+</html>
